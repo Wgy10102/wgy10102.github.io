@@ -1,62 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>文件目录浏览</title>
-    <style>
-        body { font-family: sans-serif; max-width: 800px; margin: 20px auto; }
-        ul { list-style: none; padding-left: 20px; }
-        li { margin: 5px 0; }
-        .folder::before { content: "📁 "; }
-        .file::before { content: "📄 "; }
-        a { color: #0366d6; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+    <title>Index</title>
 </head>
 <body>
-    <h1>仓库文件列表</h1>
-    <div id="directory"></div>
-
-    <script>
-        // 配置信息
-        const repoOwner = "你的GitHub用户名";
-        const repoName = "你的仓库名";
-        const branch = "main";  // 你的分支名
-        
-        // 获取目录结构
-        async function loadDirectory(path = "") {
-            const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${path}?ref=${branch}`;
-            const response = await fetch(apiUrl);
-            const contents = await response.json();
-            
-            let html = "<ul>";
-            for (const item of contents) {
-                if (item.type === "dir") {
-                    html += `
-                        <li class="folder">
-                            <a href="#" data-path="${item.path}">${item.name}</a>
-                        </li>`;
-                } else {
-                    html += `
-                        <li class="file">
-                            <a href="${item.html_url}" target="_blank">${item.name}</a>
-                        </li>`;
-                }
-            }
-            html += "</ul>";
-            
-            document.getElementById("directory").innerHTML = html;
-            
-            // 添加文件夹点击事件
-            document.querySelectorAll(".folder a").forEach(link => {
-                link.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    loadDirectory(link.dataset.path);
-                });
-            });
-        }
-
-        // 初始加载根目录
-        loadDirectory();
-    </script>
+    <h1>请访问具体的文件url</h1>
 </body>
 </html>
